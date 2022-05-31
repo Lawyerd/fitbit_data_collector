@@ -1,0 +1,30 @@
+{
+    "userId": {
+        "type": "String",
+        "required": true
+    },
+    "dateTime": {
+        "type": "String",
+        "required": true
+    },
+    "value": {
+        "type": "String",
+        "required": true
+    },
+    "dataset": [
+        {
+            "level": {
+                "type": "Number"
+            },
+            "mets": {
+                "type": "Number"
+            },
+            "time": {
+                "type": "String"
+            },
+            "value": {
+                "type": "Number"
+            }
+        }
+    ]
+}

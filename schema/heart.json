@@ -1,0 +1,49 @@
+{
+  "userId": {
+    "type": "String",
+    "required": true
+  },
+  "dateTime": {
+    "type": "String",
+    "required": true
+  },
+    
+      "heartRateZones": [
+        {
+          "caloriesOut": {
+            "type": "Number"
+          },
+          "max": {
+            "type": "Number"
+          },
+          "min": {
+            "type": "Number"
+          },
+          "minutes": {
+            "type": "Number"
+          },
+          "name": {
+            "type": "String"
+          }
+        }
+      ],
+      "restingHeartRate": {
+        "type": "Number"
+      },
+  "dataset": [
+    {
+      "level": {
+        "type": "Number"
+      },
+      "mets": {
+        "type": "Number"
+      },
+      "time": {
+        "type": "String"
+      },
+      "value": {
+        "type": "Number"
+      }
+    }
+  ]
+}

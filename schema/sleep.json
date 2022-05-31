@@ -1,0 +1,107 @@
+{
+    "_id":{
+        "type":"String"
+    },
+    
+    "userId":{
+        "type":"String",
+        "required": true
+    },
+    
+    "date":{
+        "type": "Date",
+        "required": true
+    },
+    
+    "startTime":{
+        "type": "Date",
+        "required": true
+    },
+    
+    "endTime":{
+        "type":"Date",
+        "required": true
+    },
+    
+    "duration":{
+        "type":"Number",
+        "required": true
+    },
+    
+    "timeInBed":{
+        "type":"Number",
+        "required":true
+    },
+    
+    "minutesToFallAsleep":{
+        "type":"Number",
+        "required":true
+    },
+    
+    "minutesAsleep":{
+        "type":"Number",
+        "required":true
+    },
+    
+    "minutesAwake":{
+        "type":"Number",
+        "required":true
+    },
+    
+    "minutesAfterWakeup":{
+        "type":"Number",
+        "required":true
+    },
+    
+    "isMainSleep":{
+        "type":"Boolean",
+        "required": true
+    },
+    
+    "efficiency":{
+        "type":"Number",
+        "required":true
+    },
+    
+    "logs":{
+        "required":true,
+        "type":[
+        {
+            "dateTime":{
+                "index":true,
+                "type":"Date"
+            },
+            "level":"String",
+            "seconds":"Number"
+        }
+        ]
+        },
+    "summary":{
+        "required":true,
+        "type": {
+        "wake":{
+            "count":"Number",
+            "minutes":"Number",
+            "thirtyDayAvgMinutes":"Number"
+        },
+        "rem":{
+            "count":"Number",
+            "minutes":"Number",
+            "thirtyDayAvgMinutes":"Number"
+        },
+        "light":{
+            "count":"Number",
+            "minutes":"Number",
+            "thirtyDayAvgMinutes":"Number"
+        },
+        "deep":{
+            "count":"Number",
+            "minutes":"Number",
+            "thirtyDayAvgMinutes":"Number"
+        }
+    }
+    }
+    
+    
+    
+}

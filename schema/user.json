@@ -1,0 +1,86 @@
+{
+    "_id":{
+        "type":"String"
+    },
+    
+    "userId":{
+        "type":"String",
+        "required": true
+    },
+    
+    "accessToken":{
+        "type": "String",
+        "required": false
+    },
+
+    "isTokenValid":{
+        "type":"Boolean",
+        "required":false
+    },
+    
+    "firstName":{
+        "type": "String"
+    },
+    
+    "lastName":{
+        "type":"String"
+    },
+    
+    "fullName":{
+        "type":"String",
+        "required": false
+    },
+    
+    "avatar":{
+        "type":"String",
+        "required":false
+    },
+    
+    "gender":{
+        "type":"String",
+        "required":false
+    },
+    
+    "age":{
+        "type":"Number",
+        "required":false
+    },
+    
+    "country":{
+        "type":"String"
+    },
+    
+    "averageDailySteps":{
+        "type":"Number",
+        "required":false
+    },
+    
+    "weight":{
+        "type":"Number",
+        "required": false
+    },
+    
+    "height":{
+        "type":"Number",
+        "required":false
+    },
+    
+    
+    "device":{
+        "required":false,
+        "type": {
+        "fitbit":{
+            "type":["Number"]
+        },
+        "RaspberryPi":{
+            "type":["Number"]
+        }
+    }
+    },
+    
+    "family":{
+        "required":false,
+        "type":["Number"]
+    }
+    
+}

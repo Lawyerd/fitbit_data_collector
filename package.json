@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "axios": "^0.27.2",
+    "mongoose": "^6.3.3"
+  },
+  "scripts": {
+    "locally": "node -e \"console.log(require('./AWS_test.js').handler(require('./event/event.json')));\""
+  }
+}
