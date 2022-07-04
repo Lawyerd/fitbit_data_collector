@@ -1,7 +1,8 @@
 const axios = require('axios')
+const fs = require('fs')
 const { DataTypeMarket } = require("./util/DataTypeMarket")
 const { DateGenerator } = require('./util/DateGenerator')
-const {TimeGenerator} = require('./util/TimeGenerator')
+const { TimeGenerator } = require('./util/TimeGenerator')
 
 async function getAllUsers() {
     // get User Data from MONGODB
@@ -22,9 +23,10 @@ async function getAllUsers() {
 }
 
 async function getData(sourceInfo, user) {
-    if(!user.isTokenValid){
+    if (!user.isTokenValid) {
         console.log(`[${user.userId}] token is invalid`)
-    }else{
+        return {}
+    } else {
         console.log(`[${user.userId}] token is valid`)
         try {
             const config = {
@@ -37,33 +39,35 @@ async function getData(sourceInfo, user) {
             let response = await axios.get(sourceInfo.URI, config)
             return response.data
         } catch (e) {
-            if(e.response){
-                if(e.response.status == 401){
+            if (e.response) {
+                if (e.response.status == 401) {
                     console.log(`ERROR: [${user.userId}]의 토큰은 유효하다고 마크되어 있지만 유효하지 않은 토큰입니다.`)
-                }else if(e.response.status == 404){
+                } else if (e.response.status == 404) {
                     console.log(`ERROR: Fitbit Web API의 URI가 정확하지 않습니다.`)
                 }
             }
         }
     }
-    
+
 }
 
-async function main(dataSource, users){
-    for(let dataType of dataSource){
+
+async function main(dataSource, users) {
+    for (let dataType of dataSource) {
         console.log(`[${dataType.name}] data collecting... `)
-        for(let user of users){
+
+        for (let user of users) {
             const userData = await getData(dataType, user)
-            console.log(userData)
 
-            // const url = "eqwe"
-            // try {
-            //     await axios.port(url, userData)
-            // }catch(e){
-            //     console.log(e)
-            // }
-
-
+            let today = new Date();
+            const currentTime = today.toLocaleString()
+            fs.writeFile(`log/${user._id}_${currentTime}.json`, JSON.stringify(userData), function (err) {
+                if (err === null) {
+                    console.log('success');
+                } else {
+                    console.log(err);
+                }
+            });
         }
         console.log()
         console.log()
@@ -80,7 +84,7 @@ exports.handler = async (event) => {
     let endTime = currentTime[1]
 
 
-    const dataSource = DataTypeMarket(targetDate, startTime , endTime)
+    const dataSource = DataTypeMarket(targetDate, startTime, endTime)
 
     main(dataSource, users)
 };
