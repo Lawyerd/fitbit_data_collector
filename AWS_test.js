@@ -4,7 +4,8 @@
 // const TokenValidator = require("./TokenValidator")
 // const StoreCalories = require("./StoreCalories")
 // const StoreDistance = require("./StoreDistance")
-const StoreData = require("./StoreData")
+// const StoreData = require("./StoreData")
+const main = require("./connet_with_SIHA/main")
 
 // StoreUser.handler()
 // StoreDistance.handler()
@@ -14,5 +15,6 @@ const StoreData = require("./StoreData")
 // TokenValidator.handler()
 
 exports.handler = async (event) => {
-    StoreData.handler()
+    // StoreData.handler()
+    main.handler()
 };
