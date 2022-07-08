@@ -4,6 +4,6 @@
     "mongoose": "^6.3.3"
   },
   "scripts": {
-    "locally": "node -e \"console.log(require('./AWS_test.js').handler(require('./event/event.json')));\""
+    "locally": "node -e \"console.log(require('./lancher.js').handler(require('./event/event.json')));\""
   }
 }
