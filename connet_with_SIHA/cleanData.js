@@ -15,7 +15,12 @@ exports.cleanData = function (data, alias) {
             cleanedData = data['activities-steps'][0]['value']
             break;
         case 'sleep':
-            cleanedData = data['sleep'][0]['duration']
+            if(data['sleep'].length==0){
+                cleanedData = 0
+            }else{
+                cleanedData = data['sleep'][0]['duration']
+            }
+            
             break;
     }
     return cleanedData

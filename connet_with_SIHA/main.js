@@ -7,6 +7,7 @@ const { DateGenerator } = require('../util/DateGenerator')
 const { TimeGenerator } = require('../util/TimeGenerator')
 const { invalidateToken } = require('./invalidateToken')
 const { cleanData } = require('./cleanData')
+const {updateToken}=require('./updateToken')
 
 async function getDataSource() {
     let targetDate = DateGenerator(100) // 오늘로부터 100일 전의 날짜를 '20xx-xx-xx' 형태의 String으로 불러옴
@@ -34,14 +35,15 @@ exports.handler = async (event) => {
     for (alias of dataSource) {
         for (user of userList) {
             try {
-                const data = await getData(alias, user)
-                const cleanedData = cleanData(data, alias)
+                const data = await getData(alias, user) // fitbit web API로부터 데이터를 가져오기 위해선 두 가지가 필요 (데이터가 저장된 URL, user의 토큰)
+                const cleanedData = cleanData(data, alias) // fitbit API를 통해 가져온 데이터 중 사용할 integer 데이터만 저장
+
                 console.log(cleanedData)
-                await storeData(user._id, user._id, alias.name, cleanedData)
+                // await storeData(user._id, user._id, alias.name, cleanedData) // SIHA서버에 해당 데이터 저장
             } catch (e) {
                 if (e.response) {
                     if (e.response.status == 401) {
-                        console.log(`ERROR: [${user.name}]의 토큰은 유효하다고 마크되어 있지만 유효하지 않은 토큰입니다.`)
+                        console.log(`ERROR: [${user.name}]의 토큰은 유효하다고 마크되어 있지만 유효하지 않은 토큰입니다.`) 
                         await invalidateToken(user._id, user._id)
                     } else if (e.response.status == 404) {
                         console.log(`ERROR: Fitbit Web API의 URI가 정확하지 않습니다.`)
